@@ -1,0 +1,245 @@
+..........................................1.......................................
+
+% Plot the following Cosine functions y1 = 2*cos(x), y2 = cos(x), and y3 = 0.5*cos(x) 
+%  in the interval 0 ≤ x ≤ 2π in one graph specifying line styles and colors.
+
+% Define x over the interval [0, 2π]
+x = 0:2*pi/1000:2*pi;
+
+% Define the cosine functions
+y1 = 2*cos(x);
+y2 = cos(x);
+y3 = 0.5 * cos(x);
+
+% Plot all three on the same graph
+figure;
+plot(x, y1, 'r--');  % Red dashed line
+hold on;
+plot(x, y2, 'b-');   % Blue solid line
+plot(x, y3, 'g:');   % Green dotted line
+hold off;
+
+% Add labels and title
+xlabel('x');
+ylabel('Amplitude');
+title('Cosine Functions with Different Amplitudes');
+legend('y = 2cos(x)', 'y = cos(x)', 'y = 0.5cos(x)');
+
+
+
+
+
+..........................................2.......................................
+
+% Write a script in MATLAB to represent the graphs of the functions sin(x), sin(2x), and sin(3x) 
+%   in the range (0, 2π) for x, all on the same axes with different line specifications.
+
+% Define the x range from 0 to 2π
+x = 0:2*pi/1000:2*pi;
+
+% Define the functions
+y1 = sin(x);
+y2 = sin(2*x);
+y3 = sin(3*x);
+
+% Plotting the functions
+figure;
+plot(x, y1, 'r-');     % Red solid line
+hold on;
+plot(x, y2, 'g--');    % Green dashed line
+plot(x, y3, 'b:');     % Blue dotted line
+hold off;
+
+% Labels and title
+xlabel('x');
+ylabel('Amplitude');
+title('Plots of sin(x), sin(2x), and sin(3x)');
+legend('sin(x)', 'sin(2x)', 'sin(3x)');
+
+
+
+
+
+
+
+..........................................3/5.......................................
+
+% Write a script in MATLAB to draw sin(t), cos(t) in the interval [0, 4π] 
+% in the same figure with different line specifications.
+
+
+% Define the interval
+t = 0:4*pi/1000:4*pi;
+
+% Define the functions
+y1 = sin(t);
+y2 = cos(t);
+
+% Plot the functions
+figure;
+plot(t, y1, 'r--');
+hold on;
+plot(t, y2, 'b');
+hold off;
+
+% Add labels and legend
+xlabel('t');
+ylabel('Function value');
+title('Plot of sin(t) and cos(t) in [0, 4π]');
+legend('sin(t)', 'cos(t)');
+
+
+
+
+
+
+
+
+..........................................4.......................................
+
+%Write a script in MATLAB to represent the graphs of the functions y = sin(x^2) and y = log(sqrt(x)). 
+%  The text of each equation should be properly positioned within the graph.
+
+
+% Define x-range
+x=0.1:5:1000; % Start from 0.1 to avoid log(0)
+
+% Define functions
+y1 = sin(x.^2);
+y2 = log(sqrt(x));  % or (1/2)*log(x)
+
+% Plot both functions
+figure;
+plot(x, y1, 'b-');   % blue solid line for sin(x^2)
+hold on;
+plot(x, y2, 'r--');  % red dashed line for log(sqrt(x))
+hold off;
+
+% Add labels and title
+xlabel('x');
+ylabel('y');
+title('Graphs of y = sin(x^2) and y = log(sqrt(x))');
+legend('y = sin(x^2)', 'y = log(sqrt(x))');
+
+% Add equation text annotations on graph
+text(16, sin(16^2), 'y = sin(x^2)',  'Color', 'c');
+text(4, log(sqrt(4)), 'y = log(\surdx)',  'Color', 'r');
+
+
+
+
+
+
+
+..........................................6.......................................
+
+%Create a graph divided into 4 subplots. Plot a sine wave (sin(x), sin(2x), sin(4x), sin(8x)) 
+%   in each one and title each subplot
+
+% Define x-range
+x = 0:2*pi/1000:2*pi;
+
+% Define all sine wave functions
+y1 = sin(x);
+y2 = sin(2*x);
+y3 = sin(4*x);
+y4 = sin(8*x);
+
+figure;
+% Subplot 1: sin(x)
+subplot(2,2,1);
+plot(x, y1, 'b');
+title('y = sin(x)');
+xlabel('x'); ylabel('y');
+
+% Subplot 2: sin(2x)
+subplot(2,2,2);
+plot(x, y2, 'r--');
+title('y = sin(2x)');
+xlabel('x'); ylabel('y');
+
+% Subplot 3: sin(4x)
+subplot(2,2,3);
+plot(x, y3, 'g-.');
+title('y = sin(4x)');
+xlabel('x'); ylabel('y');
+
+% Subplot 4: sin(8x)
+subplot(2,2,4);
+plot(x, y4, 'm:');
+title('y = sin(8x)');
+xlabel('x'); ylabel('y');
+
+
+
+
+
+
+
+..........................................7.......................................
+
+% Find out the inverse of the matrix A using MATLAB. Then, consider the system of linear equations:
+%      x + 2y + 3z = 1
+%      4x + 5y + 6z = 1
+%      7x + 8y      = 1
+%   Use MATLAB to solve this system of linear equations.
+
+
+A=[1 2 3; 4 5 6; 7 8 0];
+I=inv(A);
+disp(I);
+
+eqn1 = x + 2*y + 3*z == 1;
+eqn2 = 4*x + 5*y + 6*z == 1;
+eqn3 = 7*x + 8*y == 1;
+
+sol = solve([eqn1, eqn2, eqn3], [x, y, z]);
+
+xSol = sol.x
+ySol = sol.y
+zSol = sol.z
+
+
+
+
+
+
+
+..........................................8.......................................
+
+% Write a user-defined function in MATLAB to determine the roots of a quadratic equation. 
+%  Using the user-defined function, find the roots of the equation x^2 + 5x + 6 = 0.
+
+function roots = quad_roots(a, b, c)
+    % This function returns roots of a quadratic equation ax^2 + bx + c = 0
+
+    % Calculate discriminant
+    D = b^2 - 4*a*c;
+
+    % Check discriminant type
+    if D > 0
+        % Two real roots
+        root1 = (-b + sqrt(D)) / (2*a);
+        root2 = (-b - sqrt(D)) / (2*a);
+        roots = [root1, root2];
+    elseif D == 0
+        % One real root (repeated)
+        root = -b / (2*a);
+        roots = [root, root];
+    else
+        % Complex roots
+        realPart = -b / (2*a);
+        imagPart = sqrt(-D) / (2*a);
+        root1 = realPart + 1i*imagPart;
+        root2 = realPart - 1i*imagPart;
+        roots = [root1, root2];
+    end
+end
+
+% for eqn = x^2 + 5*x + 6 ==0;
+% put quad_roots(1,5,6) in command window
+
+%OTHERWISE
+%syms x
+%eqn = x^2 + 5*x + 6 ==0;
+%xSol = solve(eqn,x)
