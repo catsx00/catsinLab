@@ -1,0 +1,220 @@
+xt = @(t) cos(3*t);
+yt = @(t) sin(2*t);
+t=0:0.001:200;
+fplot(xt, yt)
+xlabel('X');
+ylabel('Y');
+
+
+
+
+
+
+f = @(x) (exp(-x)./x) - (exp(-(2+x))./(2+x));
+x=10:0.1:50;
+plot(x,f(x))
+xlabel('x');
+ylabel('y');
+
+
+
+
+
+
+y = (exp(-x)./x) - (exp(-(2+x))./(2+x));
+x = 10:0.1:50;
+plot(x,y)
+xlabel('x');
+ylabel('y');
+
+
+
+
+
+
+
+
+function dy = solvingDE1(t, y)
+
+dy = zeros(2 ,1);
+dy(1) = y(2);
+dy(2) = -(1/5)*y(2) - sin(y(1));
+end
+
+
+
+tspan = [0 40];
+y0=[0 3];
+
+[t, ya]=ode45(@solvingDE1, tspan, y0);
+
+figure
+plot(t, ya(:,1),'b')
+xlabel('t');
+ylabel('y_1');
+
+figure
+plot(ya(:,1), ya(:,2), 'g')
+xlabel('y_1');
+ylabel('y_2');
+
+figure
+plot(t, ya(:,2), 'b')
+xlabel('t');
+ylabel('y_2');
+
+
+
+
+
+
+
+
+
+
+
+function dy = solvingDE2(t,y)
+
+dy = zeros(2 ,1);
+dy(1) = y(1) - 0.01*y(1)*y(2);
+dy(2) = 0.02*y(1)*y(2) - y(2);
+end
+
+
+
+
+tspan = [0 15];
+y0 = [50 50];
+
+[t,ya] = ode45(@solvingDE2, tspan, y0);
+
+figure
+plot(t,ya(:,1),'b')
+xlabel('t');
+ylabel('y_1');
+
+figure
+plot(ya(:,1), ya(:,2), 'g')
+xlabel('y_1');
+ylabel('y_2');
+
+figure
+plot(t, ya(:,2), 'r')
+xlabel('t');
+ylabel('y_2');
+
+
+
+
+
+
+function sy = solvingDE3(t,y)
+
+sy = zeros(3,1);
+sy(1) = (-8/3)*y(1) + y(2)*y(3);
+sy(2) = (-10)*y(2) + 10*y(3);
+sy(3) = -y(1)*y(2) + 28*y(2) - y(3);
+end
+
+
+
+tspan = [-50 100];
+y0 = [0; 0; 1e-10];
+
+[t, ya] = ode45(@solvingDE3, tspan, y0);
+
+figure
+plot(t, ya(:,1),'b')
+xlabel('t');
+ylabel('y_1');
+
+figure
+plot(ya(:,1), ya(:,2),'m')
+xlabel('y_1');
+ylabel('y_2');
+
+figure
+plot(ya(:,2), ya(:,3),'r')
+xlabel('y_2');
+ylabel('y_3');
+
+figure
+plot(ya(:,1), ya(:,3),'c')
+xlabel('y_1');
+ylabel('y_3');
+
+figure
+plot(t, ya(:,3),'g')
+xlabel('t');
+ylabel('y_3');
+
+
+
+
+
+
+
+
+
+function my= solvingDE4(t,y)
+my = zeros(2, 1);
+my(1) = y(2);
+my(2) = (1 - y(1)^2)*y(2) - y(1);
+end
+
+
+
+
+tspan = [0 20];
+y0 = [2; 0];
+
+[t,ya] = ode45(@solvingDE4, tspan, y0);
+
+figure
+plot(t, ya(:,1), 'b')
+xlabel('t');
+ylabel('y_1');
+
+figure
+plot(ya(:,1), ya(:,2), 'r')
+xlabel('y_1');
+ylabel('y_2');
+
+figure
+plot(t, ya(:,2), 'c')
+xlabel('t');
+ylabel('y_2');
+
+
+
+
+
+
+
+
+
+%solve the equation
+%syms a b c x
+%eqn = a*x^2 + b*x +c == 0;
+%solx = solve(eqn, x)
+
+syms x
+eqn = x^3 == 125;
+G = solve(eqn, x)
+
+
+
+
+
+
+
+%finding solution for equations
+
+syms x y z
+eqn1 = 2*x + y + z == 2;
+eqn2 = -x + y - z == 3;
+eqn3 = x + 2*y + 3*z == -10;
+sol = solve([eqn1, eqn2, eqn3], [x, y, z]);
+g = sol.x
+f = sol.y
+h = sol.z
